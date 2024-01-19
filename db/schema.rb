@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require '../database/db'
+require_relative './db'
 
 # Creating object of DB class which is located on database folder and in db.rb file
 db = Db.new

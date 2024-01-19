@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require '../database/db'
+require './db/db'
 
-require '../service/user_service'
+require './service/user_service'
 
-require '../service/customer_service'
+require './service/customer_service'
 
 db = Db.new
 service = CustomerService.new(db)
@@ -15,6 +15,6 @@ service = CustomerService.new(db)
 
 # service.create_customer('kim', 'kimdasd@test.com', 2)
 
-service.find_customer_by_id(2)
+service.all_customers
 
 # service.delete_user_by_id(1)

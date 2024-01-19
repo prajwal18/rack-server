@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require '../database/db'
 
 # Creating object of DB class which is located on database folder and in db.rb file
@@ -21,6 +23,8 @@ query_for_creating_customer_table = 'CREATE TABLE IF NOT EXISTS customers(
   CONSTRAINT fk_users
     FOREIGN KEY (user_id)
       REFERENCES users(user_id)
+        ON DELETE CASCADE
+          ON UPDATE CASCADE
 )'
 
 # Execute the query

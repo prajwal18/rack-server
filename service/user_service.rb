@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Class for all services for creating, updating and deleting data in database
+# Class for user services for creating, updating and deleting data in database
 class UserService
   def initialize(db)
     @connection = db.connection
@@ -14,6 +14,14 @@ class UserService
     puts "Error while executing the query: #{e.message}"
   ensure
     @connection&.close
+  end
+
+  def all_users
+    query = 'SELECT * FROM users'
+    results = @connection.exec(query)
+    results.each do |row|
+      puts row
+    end
   end
 
   def find_user_by_id(id)

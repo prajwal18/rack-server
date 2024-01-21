@@ -17,7 +17,7 @@ class UserService
   end
 
   def all_users
-    query = 'SELECT * FROM users'
+    query = 'SELECT * FROM users LEFT JOIN customers ON users.id = customers.user_id'
     results = @connection.exec(query)
     results.each do |row|
       puts row
@@ -25,7 +25,7 @@ class UserService
   end
 
   def find_user_by_id(id)
-    query = "SELECT * FROM users WHERE id = '#{id}'"
+    query = "SELECT * FROM users LEFT JOIN customers ON users.id = customers.user_id WHERE users.id = '#{id}'"
     result = @connection.exec(query)
     result.each do |row|
       puts row

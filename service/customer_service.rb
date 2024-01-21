@@ -7,7 +7,7 @@ class CustomerService
   end
 
   def create_customer(name, email, user_id)
-    query = "INSERT INTO customers (name, email, user_id) VALUES('#{name}', '#{email}', '#{user_id}')"
+    query = "INSERT INTO customers (customer_name, email, user_id) VALUES('#{name}', '#{email}', '#{user_id}')"
     @connection.exec(query)
     puts 'Customer is created'
   rescue PG::Error => e
@@ -17,7 +17,7 @@ class CustomerService
   end
 
   def all_customers
-    query = 'SELECT * FROM customers'
+    query = 'SELECT * FROM customers INNER JOIN users ON customers.user_id = users.id'
     results = @connection.exec(query)
     results.each do |row|
       puts row
@@ -25,7 +25,7 @@ class CustomerService
   end
 
   def find_customer_by_id(id)
-    query = "SELECT * FROM customers WHERE id = '#{id}'"
+    query = "SELECT * FROM customers INNER JOIN users ON customers.user_id = users.id WHERE customers.id = '#{id}'"
     result = @connection.exec(query)
     result.each do |row|
       puts row

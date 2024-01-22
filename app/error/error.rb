@@ -1,6 +1,7 @@
-require_relative 'all_error'
-
 module Error
+  class RouteError < StandardError
+  end
+
   def resolver
     yield
   rescue RouteError => _e

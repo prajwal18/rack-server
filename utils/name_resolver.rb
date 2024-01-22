@@ -1,4 +1,5 @@
-module Rulers
+require 'pry'
+module RackServer
   def self.to_underscore(string)
     string.gsub(/::/, '/')
           .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
@@ -7,12 +8,18 @@ module Rulers
           .downcase
   end
 
-  # def self.resolve_name(string)
-  #   resolved_name = to_underscore(string)
-  #   resolve_name += if resolve_name.include?('_controller')
-  #      './app/controller/'
-  #   else 
-  #     ''
-  #   end
-  # end
+  def self.resolve_name(string)
+    resolved_name = to_underscore(string)
+
+    case resolved_name
+    when /controller/
+      "./app/controller/#{resolved_name}"
+    when /error/
+      './app/error/error'
+    when /_view/
+      "./app/view/#{resolved_name}"
+    when /_service/
+      "./service/#{resolved_name}"
+    end
+  end
 end

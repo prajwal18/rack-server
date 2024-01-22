@@ -16,8 +16,6 @@ module RackServer
       "./app/controller/#{resolved_name}"
     when /error/
       './app/error/error'
-    when /_view/
-      "./app/view/#{resolved_name}"
     when /_service/
       "./service/#{resolved_name}"
     end

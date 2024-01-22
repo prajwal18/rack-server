@@ -2,11 +2,10 @@ require_relative 'controller'
 class UsersController < RackServer::Controller
   
   def index
-    'Get a list of all the users'
+    render 'user_index', {}
   end
 
   def show
-    'There is nothing either good or bad ' +
-      'but thinking makes it so.'
+    render 'user_show', {}
   end
 end

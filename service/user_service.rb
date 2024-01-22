@@ -65,7 +65,7 @@ class UserService
       results.map do |row|
         unless users_with_customers.key?(row['id']) # Checking if the user_id key exists in hash or not
           users_with_customers[row['id']] = {
-            user_id: row['id'],
+            id: row['id'],
             name: row['name'],
             age: row['age'],
             customers: []

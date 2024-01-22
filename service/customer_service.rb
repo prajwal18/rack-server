@@ -23,17 +23,13 @@ class CustomerService
     def all_customers
       query = 'SELECT * FROM customers INNER JOIN users ON customers.user_id = users.id'
       results = connection.exec(query)
-      results.each do |row|
-        puts row
-      end
+      hash_converter(results)
     end
 
     def find_customer_by_id(id)
       query = 'SELECT * FROM customers INNER JOIN users ON customers.user_id = users.id WHERE customers.customer_id = $1'
       result = connection.exec(query, [id])
-      result.each do |row|
-        puts row
-      end
+      hash_converter(result)
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
     ensure
@@ -53,6 +49,23 @@ class CustomerService
     def update_customer_email_by_id(id, email)
       query = 'UPDATE customers SET email = $2 WHERE id = $1'
       connection.exec(query, [id, email])
+    end
+
+    private
+
+    def hash_converter(results)
+      customers_with_users = {}
+      results.each do |row|
+        customers_with_users[row['customer_id']] = {
+          id: row['customer_id'],
+          name: row['customer_name'],
+          email: row['email'],
+          user_id: row['user_id'],
+          user_name: row['name'],
+          user_age: row['age']
+        }
+      end
+      customers_with_users.values
     end
   end
 end

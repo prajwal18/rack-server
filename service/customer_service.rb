@@ -54,9 +54,8 @@ class CustomerService
     private
 
     def hash_converter(results)
-      customers_with_users = {}
-      results.each do |row|
-        customers_with_users[row['customer_id']] = {
+      results.map do |row|
+        {
           id: row['customer_id'],
           name: row['customer_name'],
           email: row['email'],
@@ -65,7 +64,6 @@ class CustomerService
           user_age: row['age']
         }
       end
-      customers_with_users.values
     end
   end
 end

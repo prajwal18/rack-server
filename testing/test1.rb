@@ -8,8 +8,8 @@ require './service/customer_service'
 
 # CustomerService.create_customer('Cmn', 'Cmn@test.com', 4)
 
-# puts CustomerService.all_customers
-puts UserService.all_users
+puts CustomerService.all_customers
+# puts UserService.all_users
 # puts UserService.find_user_by_id(2)
 # UserService.delete_user_by_id(2)
 # puts UserService.update_user_name_by_id(2, 'Eunesh')

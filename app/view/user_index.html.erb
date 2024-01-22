@@ -1,4 +1,4 @@
-<!Doctype htlm>
+<!Doctype html>
 <html>
   <head>
     <title>
@@ -7,5 +7,11 @@
   </head>
   <body>
     <h1> A list of all the users </h1>
+    <%users.each do |row|%>
+    <h1>
+      <%=row[:name]%> 
+    </h1>
+    <%end%>
+      <%=RUBY_VERSION%>
   </body>
 </html>

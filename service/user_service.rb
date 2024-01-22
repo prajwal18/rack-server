@@ -19,19 +19,19 @@ class UserService
     end
 
     def all_users
-      query = 'SELECT name,age,id,customer_id,customer_name,email FROM users LEFT JOIN customers ON users.id = customers.user_id'
+      query = 'SELECT * FROM users LEFT JOIN customers ON users.id = customers.user_id'
       results = connection.exec(query)
-      results.each do |row|
-        puts row
-      end
+      hash_converter(results)
+    rescue PG::Error => e
+      puts "Error while executing the query: #{e.message}"
+    ensure
+      connection&.close
     end
 
     def find_user_by_id(id)
       query = 'SELECT * FROM users LEFT JOIN customers ON users.id = customers.user_id WHERE users.id = $1'
       result = connection.exec(query, [id])
-      result.each do |row|
-        puts row
-      end
+      hash_converter(result)
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
     ensure
@@ -56,6 +56,33 @@ class UserService
       puts "Error while executing the query: #{e.message}"
     ensure
       connection&.close
+    end
+
+    private
+
+    def hash_converter(results)
+      users_with_customers = {}
+      results.map do |row|
+        unless users_with_customers.key?(row['id']) # Checking if the user_id key exists in hash or not
+          users_with_customers[row['id']] = {
+            user_id: row['id'],
+            name: row['name'],
+            age: row['age'],
+            customers: []
+          }
+        end
+
+        # skipping iteration if customer_id is nil
+        next if row['customer_id'].nil?
+
+        # For adding customers data to user
+        users_with_customers[row['id']][:customers] << {
+          customer_id: row['customer_id'],
+          customer_name: row['customer_name'],
+          customer_email: row['email']
+        }
+      end
+      users_with_customers.values
     end
   end
 end

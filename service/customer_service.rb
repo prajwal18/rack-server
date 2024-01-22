@@ -39,5 +39,20 @@ class CustomerService
     ensure
       connection&.close
     end
+
+    def delete_customer_by_id(id)
+      query = 'DELETE FROM customers WHERE customer_id = $1'
+      connection.exec(query, [id])
+      puts 'Customer is deleted'
+    rescue PG::Error => e
+      puts "Error while executing the query: #{e.message}"
+    ensure
+      connection&.close
+    end
+
+    def update_customer_email_by_id(id, email)
+      query = 'UPDATE customers SET email = $2 WHERE id = $1'
+      connection.exec(query, [id, email])
+    end
   end
 end

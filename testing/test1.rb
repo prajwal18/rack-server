@@ -6,7 +6,16 @@ require './service/user_service'
 
 require './service/customer_service'
 
-UserService.find_user_by_id(2)
+
+# CustomerService.create_customer('Cmn', 'Cmn@test.com', 4)
+puts UserService.all_users
+# puts UserService.find_user_by_id(2)
+# UserService.delete_user_by_id(2)
+# puts UserService.update_user_name_by_id(2, 'Eunesh')
+# all_user.each do |data|
+#   puts data
+# end
+# CustomerService.delete_customer_by_id(1)
 # db = Db.new
 # service = UserService.new(db)
 

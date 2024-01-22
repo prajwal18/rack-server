@@ -1,4 +1,3 @@
-require 'pry'
 module RackServer
   def self.to_underscore(string)
     string.gsub(/::/, '/')

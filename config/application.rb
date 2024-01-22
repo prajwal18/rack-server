@@ -1,14 +1,10 @@
 require_relative 'routing'
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'controllers')
-require 'users_controller'
-require 'customers_controller'
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'errors')
-require 'resolver'
-require 'all_error'
+require_relative 'dependencies'
 
 module RackServer
   class Application
     include Error
+
     def call(env)
       resolver do
         klass, act = get_controller_and_action(env)

@@ -1,4 +1,4 @@
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'errors')
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'error')
 require 'all_error'
 
 module RackServer

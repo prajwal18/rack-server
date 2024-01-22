@@ -1,8 +1,8 @@
 require_relative 'routing'
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'controllers')
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'controller')
 require 'users_controller'
 require 'customers_controller'
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'errors')
+$LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'app', 'error')
 require 'resolver'
 require 'all_error'
 

@@ -16,8 +16,8 @@ query_for_creating_user_table = 'CREATE TABLE IF NOT EXISTS users(
 
 # Query for creating customer table
 query_for_creating_customer_table = 'CREATE TABLE IF NOT EXISTS customers(
-  id INT GENERATED ALWAYS AS IDENTITY,
-  name VARCHAR(255) NOT NULL,
+  customer_id INT GENERATED ALWAYS AS IDENTITY,
+  customer_name VARCHAR(255) NOT NULL,
   email VARCHAR(50) UNIQUE,
   user_id INT,
   CONSTRAINT fk_users

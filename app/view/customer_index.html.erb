@@ -4,28 +4,72 @@
     <title>
       Rack Server | Customers List
     </title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+      }
+
+      .user-card {
+        width: 300px;
+        margin: 10px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+      }
+
+      .user-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .user-name {
+        font-size: 20px;
+        color: #007bff;
+        margin-bottom: 5px;
+      }
+
+      .user-details {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .flex_row{
+        display: flex;
+        flex-direction: row;
+      }
+    </style>
   </head>
   <body>
     <h1> A list of all the customers </h1>
-    <div class="d-flex flex-row flex-wrap gap-3 justify-center">
-      <div class="card">
-        <h5>Customers</h5>
+    <div class="flex_row">
         <% customers.each do |customer| %>
-          <p>
-            <strong>Customer Id:</strong> <%= customer[:id]%>
-          </p>
-          <p>
-            <strong>Customer Name:</strong> <%= customer[:name]%>
-          </p>
+          <div class="user-card">
+          <h2 class="user-name">
+             <%= customer[:name]%>
+          </h2>
           <p>
             <strong>Customer Email:</strong> <%= customer[:email]%>
           </p>
+          <h2 class="user-name">Associated with</h2>
           <p>
             <strong>User Id:</strong> <%= customer[:user_id]%>
           </p>
           <p>
-            <strong>User Name:</strong> <%= customer[:user_name]%>
+            <a href="http://localhost:4000/users/show/?id=<%= customer[:user_id]%>" class="user-details"><strong>User Name:</strong> <%= customer[:user_name]%></a>
           </p>
+          </div>
         <% end %>
       </div>
     </div>

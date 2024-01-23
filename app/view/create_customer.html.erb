@@ -7,5 +7,22 @@
   </head>
   <body>
     <h1> Create Customer</h1>
+    <form action="/customers/submit" method="post">
+      <label for="name">Enter your Name:</label>
+      <input type="text" id="name" name="name" required>
+      <br/>
+      <label for="email">Enter your Email:</label>
+      <input type="email" id="email" name="email" required>
+      <br/>
+      <label for="user_id">Choose a User:</label>
+      <select name="user_id" id="user_id" required>
+        <% users_dd.each do |user_dd| %>
+          <option value="<%= user_dd["id"]%>">
+            <%= user_dd["name"]%>
+          </option>
+        <%end%>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
   </body>
 </html>

@@ -14,8 +14,6 @@ class UserService
       puts 'User is created'
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def all_users
@@ -24,8 +22,6 @@ class UserService
       hash_converter(results)
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def find_user_by_id(id)
@@ -34,8 +30,6 @@ class UserService
       hash_converter(result)
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def delete_user_by_id(id)
@@ -44,8 +38,6 @@ class UserService
       puts 'User is deleted'
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def update_user_name_by_id(id, name)
@@ -54,8 +46,15 @@ class UserService
       puts 'User name is updated'
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
+    end
+
+    def users_drop_down_list
+      query = 'SELECT * FROM users'
+      results = connection.exec(query)
+      results.to_a
+      # hash_converter(results)
+    rescue PG::Error => e
+      puts "Error while executing the query: #{e.message}"
     end
 
     private

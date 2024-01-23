@@ -1,11 +1,67 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>
-      Rack Server | User
-    </title>
+    <title>Rack Server | Users List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+      }
+
+      .user-card {
+        width: 300px;
+        margin: 10px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+      }
+
+      .user-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .user-name {
+        font-size: 20px;
+        color: #007bff;
+        margin-bottom: 5px;
+      }
+
+      .user-details {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .flex_row{
+        display: flex;
+        flex-direction: row;
+      }
+    </style>
   </head>
   <body>
-    <h1> User : <%= 'Eunesh' %></h1>
+    <h1>Individual User <%= user[:id]%></h1>
+    <div class="flex_row">
+      <div class="user-card">
+        <h2 class="user-name"><%= user[:name] %></h2>
+        <p class="user-details"><strong>Age:</strong> <%= user[:age] %></p>
+        <h2 class="user-name">Associated with</h2>
+        <%user[:customers].each do |row|%>
+        
+         <p class="user-details"><strong>Customers Name:</strong> <%= row[:customer_name]%></p>
+        <%end%>
+        <!-- Add other user details here -->
+      </div>
+    </div>
   </body>
 </html>

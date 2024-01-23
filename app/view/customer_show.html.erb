@@ -6,6 +6,23 @@
     </title>
   </head>
   <body>
-    <h1> Customer : <%= 'Prajwal' %> </h1>
+    <h1> Customer : <%= customer[:name] %> </h1>
+    <div class="card">
+          <p>
+            <strong>Customer Id:</strong> <%= customer[:id]%>
+          </p>
+          <p>
+            <strong>Customer Name:</strong> <%= customer[:name]%>
+          </p>
+          <p>
+            <strong>Customer Email:</strong> <%= customer[:email]%>
+          </p>
+          <p>
+            <strong>User Id:</strong> <%= customer[:user_id]%>
+          </p>
+          <p>
+            <strong>User Name:</strong> <%= customer[:user_name]%>
+          </p>
+      </div>
   </body>
 </html>

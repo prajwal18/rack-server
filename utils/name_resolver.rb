@@ -13,6 +13,8 @@ module RackServer
     case resolved_name
     when /controller/
       "./app/controller/#{resolved_name}"
+    when /_error/
+      "./app/error/#{resolved_name}"
     when /error/
       './app/error/error'
     when /_service/

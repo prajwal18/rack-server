@@ -9,8 +9,6 @@ module RackServer
       raise RouteError if controller.nil?
 
       [controller, action]
-    rescue NameError => _e
-      raise RouteError, 'Controller not found'
     end
   end
 end

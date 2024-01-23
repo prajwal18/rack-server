@@ -11,8 +11,7 @@ module RackServer
         controller = klass.new(env)
         raise RouteError, 'Route not found' unless controller.respond_to?(act)
 
-        text = controller.send(act)
-        [200, { 'Content-Type' => 'text/html' }, [text]]
+        controller.send(act)
       end
     end
   end

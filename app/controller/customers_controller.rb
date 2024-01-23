@@ -33,4 +33,11 @@ class CustomersController < RackServer::Controller
     end
     [302, { 'Location': redirect_url, 'Content-Type' => 'text/html' }, []]
   end
+
+  def delete
+    customer_id = env['QUERY_STRING'].split('=')[1]
+    redirect_url = 'http://localhost:4000/customers/'
+    CustomerService.delete_customer_by_id(customer_id)
+    [302, { 'Location': redirect_url, 'Content-Type' => 'text/html' }, []]
+  end
 end

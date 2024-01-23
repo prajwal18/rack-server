@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 require_relative 'controller'
+
 class UsersController < RackServer::Controller
   def index
     response = render 'user_index', { users: UserService.all_users }
@@ -29,6 +28,13 @@ class UsersController < RackServer::Controller
       UserService.create_user(body['name'], body['age'])
       redirect_url = 'http://localhost:4000/users/'
     end
+    [302, { 'Location': redirect_url, 'Content-Type' => 'text/html' }, []]
+  end
+
+  def delete
+    user_id = env['QUERY_STRING'].split('=')[1]
+    redirect_url = 'http://localhost:4000/users/'
+    UserService.delete_user_by_id(user_id)
     [302, { 'Location': redirect_url, 'Content-Type' => 'text/html' }, []]
   end
 end

@@ -43,6 +43,12 @@
         color: #555;
       }
 
+      .flex_column{
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
       .flex_row{
         display: flex;
         flex-direction: row;
@@ -56,11 +62,11 @@
         <h2 class="user-name"><%= user[:name] %></h2>
         <p class="user-details"><strong>Age:</strong> <%= user[:age] %></p>
         <h2 class="user-name">Associated with</h2>
+        <div class="flex_column">
         <%user[:customers].each do |row|%>
-        
-         <p class="user-details"><strong>Customers Name:</strong> <%= row[:customer_name]%></p>
+         <a href="http://localhost:4000/customers/show/?id=<%= row[:customer_id]%>" class="user-details"><strong>Customers Name:</strong> <%= row[:customer_name]%></a>
         <%end%>
-        <!-- Add other user details here -->
+        </div>
       </div>
     </div>
   </body>

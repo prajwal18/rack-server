@@ -7,5 +7,27 @@
   </head>
   <body>
     <h1> A list of all the customers </h1>
+    <div class="d-flex flex-row flex-wrap gap-3 justify-center">
+      <div class="card">
+        <h5>Customers</h5>
+        <% customers.each do |customer| %>
+          <p>
+            <strong>Customer Id:</strong> <%= customer[:id]%>
+          </p>
+          <p>
+            <strong>Customer Name:</strong> <%= customer[:name]%>
+          </p>
+          <p>
+            <strong>Customer Email:</strong> <%= customer[:email]%>
+          </p>
+          <p>
+            <strong>User Id:</strong> <%= customer[:user_id]%>
+          </p>
+          <p>
+            <strong>User Name:</strong> <%= customer[:user_name]%>
+          </p>
+        <% end %>
+      </div>
+    </div>
   </body>
 </html>

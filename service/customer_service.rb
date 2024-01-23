@@ -16,8 +16,6 @@ class CustomerService
       puts 'Customer is created'
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def all_customers
@@ -32,8 +30,6 @@ class CustomerService
       hash_converter(result)
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def delete_customer_by_id(id)
@@ -42,8 +38,6 @@ class CustomerService
       puts 'Customer is deleted'
     rescue PG::Error => e
       puts "Error while executing the query: #{e.message}"
-    ensure
-      connection&.close
     end
 
     def update_customer_email_by_id(id, email)
